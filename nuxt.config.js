@@ -28,7 +28,8 @@ export default {
   components: {
     dirs: [
       '~/components',
-      '~/components/layout'
+      '~/components/layout',
+      '~/components/transition'
     ]
   },
 
@@ -51,7 +52,7 @@ export default {
   build: {
   },
 
-  server: {
-    host: '0.0.0.0'
-  }
+//   server: {
+//     host: '0.0.0.0'
+//   }
 }

@@ -1,6 +1,6 @@
 <template>
   <page-container>
-    <div>환영합니다. welcome!!!</div>
+    <TextTransition :text="'환영합니다. welcome!!!'"></TextTransition>
     <template v-for="i in 200">
       <div :key="i">
         {{ i+'번째 라인!!!' }}
