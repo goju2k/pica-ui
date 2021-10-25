@@ -29,6 +29,8 @@ export default {
     mousedown (e) {
       console.log('mousedown => ', e)
       this.move = true
+      this.startX = e.clientX
+      this.startTime = performance.now()
     },
     mousemove (e) {
       if (!this.move) {
@@ -39,6 +41,8 @@ export default {
     },
     mouseup (e) {
       console.log('mouseup => ', e)
+      const force = Math.abs(e.clientX - this.startX) / (performance.now() - this.startTime)
+      console.log('force:' + force)
       const container = this.$refs.container
       const remain = container.scrollLeft % container.offsetWidth
       const fixValue = remain / container.offsetWidth > 0.5 ? 1 : 0
@@ -55,6 +59,7 @@ export default {
       const t = e.touches[0]
       this.tStartX = t.screenX
       this.tStartY = t.screenY
+      this.tStartTime = performance.now()
     },
     touchmove (e) {
       if (!this.move) {
@@ -76,6 +81,11 @@ export default {
     },
     touchend (e) {
       console.log('touchend => ', e)
+
+      const t = e.touches[0]
+      const force = Math.abs(t.screenX - this.tStartX) / (performance.now() - this.tStartTime)
+      console.log('force:' + force)
+
       const container = this.$refs.container
       const remain = container.scrollLeft % container.offsetWidth
       const fixValue = remain / container.offsetWidth > 0.5 ? 1 : 0
